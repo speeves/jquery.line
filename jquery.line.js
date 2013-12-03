@@ -52,8 +52,6 @@
             line.style.width = length + "px";
             line.style.zIndex = options.zindex;
 
-            var angle = Math.atan((y2-y1)/(x2-x1));
-            //console.log(angle);
             if(isIEPre10 == 1){
                 line.style.top = (y2 > y1) ? y1 + "px" : y2 + "px";
                 line.style.left = x1 + "px";
@@ -61,6 +59,7 @@
                 var nSin = (y2-y1)/length;
                 line.style.filter = "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=" + nCos + ", M12=" + -1*nSin + ", M21=" + nSin + ", M22=" + nCos + ")";
             }else{
+                var angle = Math.atan((y2-y1)/(x2-x1));
                 // speeves: parseFloat(y1), as JS is treating negative 0.5*length*Math.sin(angle) as a string
                 line.style.top = parseFloat(y1) + 0.5*length*Math.sin(angle) + "px";
                 line.style.left = x1 - 0.5*length*(1 - Math.cos(angle)) + "px";
